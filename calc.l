@@ -34,6 +34,7 @@ extern int yyerror(char *s);
 ","		return COMMA;
 "min"	return MIN;
 "max"	return MAX;
+"cond"
 
 "\n"    return NEWLINE;
 

@@ -25,6 +25,7 @@ statement: expr NEWLINE { printf("%d\n", $1); }
          | VARIABLE ASSIGN expr NEWLINE { sym[$1] = $3; }
          ;
 
+
 expr: INTEGER            { $$ = $1; }
       | VARIABLE         { $$ = sym[$1]; }
       | expr PLUS expr   { $$ = $1 + $3; }
@@ -41,13 +42,17 @@ expr: INTEGER            { $$ = $1; }
       | expr DIFFERENT expr { $$ = $1 != $3; }
       | expr GREATER expr { $$ = $1 > $3; }
       | expr GREATEREQ expr { $$ = $1 >= $3; }
-      | MIN LBRACE expr COMMA expr RBRACE { $$ = min ($3, $5); }
+      | MIN LBRACE minexpr RBRACE { $$ = $3; }
       | MAX LBRACE maxexpr RBRACE { $$ = $3; }
 
       ;
 
 maxexpr: expr { $$ = $1; }
       | expr COMMA maxexpr { $$ = max($1, $3); }
+        ;
+
+minexpr: expr { $$ = $1; }
+      | expr COMMA minexpr { $$ = min($1, $3); }
         ;
 
 %%
