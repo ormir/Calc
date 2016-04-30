@@ -3,6 +3,7 @@ extern int yylval;
 extern int sym[];
 extern int yyerror(char *s);
 #include "y.tab.h"
+#include <stdio.h>
 %}
 
 %%
@@ -16,6 +17,13 @@ extern int yyerror(char *s);
            yylval = atoi(yytext);
            return INTEGER;
         }
+0x[0-9a-fA-F]+ {
+		//yytext is char array that we use the hex value of
+		//printf("%s\n", yytext);
+		//yylval =  atoi(yytext+2);
+		yylval = (int)strtol(yytext, NULL, 16);
+		return INTEGER;
+		}
 
 ":="    return ASSIGN;
 "+"     return PLUS;

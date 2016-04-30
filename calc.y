@@ -52,7 +52,7 @@ stmt : expr SMALLER expr { $$ = $1 < $3; }
       | expr DIFFERENT expr { $$ = $1 != $3; }
       | expr GREATER expr { $$ = $1 > $3; }
       | expr GREATEREQ expr { $$ = $1 >= $3; }
-      ;
+    ;
 
 maxexpr: expr { $$ = $1; }
         | expr COMMA maxexpr { $$ = max($1, $3); }
