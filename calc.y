@@ -23,8 +23,10 @@ program: program statement
        | 
        ;
 
-statement: expr NEWLINE { printf("%d\n", $1); }
-         | VARIABLE ASSIGN expr NEWLINE { sym[$1] = $3; }
+statement: expr NEWLINE 
+	     { printf("%d\n", $1); }
+         | VARIABLE ASSIGN expr NEWLINE
+             { sym[$1] = $3; }
          ;
 
 
@@ -38,22 +40,22 @@ expr: INTEGER            { $$ = $1; }
       | LBRACE expr RBRACE  { $$ = $2 ; }
       | MINUS expr        { $$ = - $2 ; }
       | PLUS expr         { $$ = $2; }
-      | expr SMALLER expr { $$ = $1 < $3; }
+      | stmt { $$ = $1; }
+      | MIN LBRACE minexpr RBRACE { $$ = $3; }
+      | MAX LBRACE maxexpr RBRACE { $$ = $3; }
+      | stmt QUEST expr COLON expr { $$ = $1 ? $3 :$5; }
+      ;
+
+stmt : expr SMALLER expr { $$ = $1 < $3; }
       | expr SMALLEREQ expr { $$ = $1 <= $3; }
       | expr EQUAL expr { $$ = $1 == $3; }
       | expr DIFFERENT expr { $$ = $1 != $3; }
       | expr GREATER expr { $$ = $1 > $3; }
       | expr GREATEREQ expr { $$ = $1 >= $3; }
-      | MIN LBRACE minexpr RBRACE { $$ = $3; }
-      | MAX LBRACE maxexpr RBRACE { $$ = $3; }
-        | expr QUEST expr COLON expr { 
-            printf("a: %d, b: %d, c: %d\n",$1,$2,$3);
-            $$ = compare ($1, $2, $3); 
-            }
       ;
 
 maxexpr: expr { $$ = $1; }
-      | expr COMMA maxexpr { $$ = max($1, $3); }
+        | expr COMMA maxexpr { $$ = max($1, $3); }
         ;
 
 minexpr: expr { $$ = $1; }
@@ -67,7 +69,7 @@ int yyerror(char *s) {
   return 0;
 }
 
-int min (int a, int b){
+int min (int a,int b){
   return (a < b) ? a : b;
 }
 
