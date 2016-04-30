@@ -54,11 +54,13 @@
      COMMA = 270,
      MIN = 271,
      MAX = 272,
-     PLUS = 273,
-     TIMES = 274,
-     MINUS = 275,
-     DIVIDE = 276,
-     MODULO = 277
+     COLON = 273,
+     PLUS = 274,
+     TIMES = 275,
+     MINUS = 276,
+     DIVIDE = 277,
+     MODULO = 278,
+     QUEST = 279
    };
 #endif
 /* Tokens.  */
@@ -77,11 +79,13 @@
 #define COMMA 270
 #define MIN 271
 #define MAX 272
-#define PLUS 273
-#define TIMES 274
-#define MINUS 275
-#define DIVIDE 276
-#define MODULO 277
+#define COLON 273
+#define PLUS 274
+#define TIMES 275
+#define MINUS 276
+#define DIVIDE 277
+#define MODULO 278
+#define QUEST 279
 
 
 

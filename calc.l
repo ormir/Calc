@@ -33,8 +33,9 @@ extern int yyerror(char *s);
 ">="	return GREATEREQ;
 ","		return COMMA;
 "min"	return MIN;
-"max"	return MAX;
-"cond"
+"max"	return MAX; 
+"?"		return QUEST;
+":"		return COLON;
 
 "\n"    return NEWLINE;
 

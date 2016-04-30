@@ -5,14 +5,16 @@ int yyerror(char *s);
 int yylex();
 int min (int a,int b);
 int max (int a, int b);
+int compare (int a, int b, int c);
 %}
 
-%token VARIABLE ASSIGN INTEGER NEWLINE LBRACE RBRACE SMALLER SMALLEREQ EQUAL DIFFERENT GREATER GREATEREQ COMMA MIN MAX
+%token VARIABLE ASSIGN INTEGER NEWLINE LBRACE RBRACE SMALLER SMALLEREQ EQUAL DIFFERENT GREATER GREATEREQ COMMA MIN MAX COLON
 %left PLUS
 %left TIMES
 %left MINUS
 %left DIVIDE
 %left MODULO
+%left QUEST
 
 
 %%
@@ -44,7 +46,10 @@ expr: INTEGER            { $$ = $1; }
       | expr GREATEREQ expr { $$ = $1 >= $3; }
       | MIN LBRACE minexpr RBRACE { $$ = $3; }
       | MAX LBRACE maxexpr RBRACE { $$ = $3; }
-
+        | expr QUEST expr COLON expr { 
+            printf("a: %d, b: %d, c: %d\n",$1,$2,$3);
+            $$ = compare ($1, $2, $3); 
+            }
       ;
 
 maxexpr: expr { $$ = $1; }
@@ -68,6 +73,11 @@ int min (int a, int b){
 
 int max (int a, int b){
   return (a > b) ? a : b;
+}
+
+int compare (int a, int b, int c){
+  //printf("a: %d, b: %d, c: %d\n",a,b,c);
+  return a ? b : c;
 }
 
 
