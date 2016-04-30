@@ -55,12 +55,13 @@
      MIN = 271,
      MAX = 272,
      COLON = 273,
-     PLUS = 274,
-     TIMES = 275,
-     MINUS = 276,
-     DIVIDE = 277,
-     MODULO = 278,
-     QUEST = 279
+     HEX = 274,
+     PLUS = 275,
+     TIMES = 276,
+     MINUS = 277,
+     DIVIDE = 278,
+     MODULO = 279,
+     QUEST = 280
    };
 #endif
 /* Tokens.  */
@@ -80,12 +81,13 @@
 #define MIN 271
 #define MAX 272
 #define COLON 273
-#define PLUS 274
-#define TIMES 275
-#define MINUS 276
-#define DIVIDE 277
-#define MODULO 278
-#define QUEST 279
+#define HEX 274
+#define PLUS 275
+#define TIMES 276
+#define MINUS 277
+#define DIVIDE 278
+#define MODULO 279
+#define QUEST 280
 
 
 
